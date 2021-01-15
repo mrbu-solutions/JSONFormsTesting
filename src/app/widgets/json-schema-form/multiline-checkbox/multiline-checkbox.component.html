@@ -1,0 +1,10 @@
+<div class="container">
+  <div>
+    <span>{{ label }}</span>
+  </div>
+  <div>
+    <mat-checkbox (change)="valueChanges($event)">{{
+      schema.description
+    }}</mat-checkbox>
+  </div>
+</div>

@@ -1,21 +1,33 @@
-import { JsonpClientBackend } from "@angular/common/http";
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { JsonSchemaFormService } from "@dashjoin/json-schema-form";
 import { Schema } from "@dashjoin/json-schema-form/lib/schema";
+import { MultilineCheckboxComponent } from "./widgets/json-schema-form/multiline-checkbox/multiline-checkbox.component";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = "test";
 
+  constructor(private service: JsonSchemaFormService) {}
+
+  ngOnInit() {
+    this.service.registerComponent(
+      "multiline-checkbox",
+      MultilineCheckboxComponent
+    );
+  }
+
   value: any = {
+    test: <String>null,
     standortdaten: <String>null,
     raeumlichkeiten: <String>null,
     allgemeine_mindestkriterien: <String>null,
   };
   error: any = {
+    test: <any>null,
     standortdaten: <any>null,
     raeumlichkeiten: <any>null,
     allgemeine_mindestkriterien: <any>null,
@@ -233,29 +245,31 @@ export class AppComponent {
           properties: {
             "1.": {
               type: "boolean",
-              title:
-                "Das Objekt und das Grundstück sind in sauberem Zustand und werden regelmäßig gereinigt und gepflegt. Bei Verschmutzung und mangelnder Hygiene (Schimmel, " +
-                "Stockflecken, Ungeziefer, schlechter Geruch etc.) ist eine Klassifizierung nicht möglich",
+              widget: "custom",
+              widgetType: "multiline-checkbox",
+              title: "1.",
               description:
                 "Das Objekt und das Grundstück sind in sauberem Zustand und werden regelmäßig gereinigt und gepflegt. Bei Verschmutzung und mangelnder Hygiene (Schimmel, " +
                 "Stockflecken, Ungeziefer, schlechter Geruch etc.) ist eine Klassifizierung nicht möglich",
-              style: {
-                overflow: "inherit"
-              }
             },
             "2.": {
               type: "boolean",
+              widget: "custom",
+              widgetType: "multiline-checkbox",
               title: "2.",
               description:
-                "Das Objekt und das Grundstück sind in sauberem Zustand und werden regelmäßig gereinigt und gepflegt. Bei Verschmutzung und mangelnder Hygiene (Schimmel, " +
-                "Stockflecken, Ungeziefer, schlechter Geruch etc.) ist eine Klassifizierung nicht möglich",
+                "Das Objekt ist eine in sich abgeschlossene Einheit und verfügt über eine separate Eingangstür zur vermieteten Einheit.",
             },
             "3.": {
               type: "boolean",
+              widget: "custom",
+              widgetType: "multiline-checkbox",
               title: "3.",
               description:
-                "Das Objekt und das Grundstück sind in sauberem Zustand und werden regelmäßig gereinigt und gepflegt. Bei Verschmutzung und mangelnder Hygiene (Schimmel, " +
-                "Stockflecken, Ungeziefer, schlechter Geruch etc.) ist eine Klassifizierung nicht möglich",
+                "Die Zugänge von Toilettenräumen sind mit einer schließbaren Tür ausgestattet (Vorhänge und Falttüren sind nicht zulässig)." +
+                "Eine Mitbenutzung der Sanitäreinrichtungen außerhalb des Objektes, z. B. mit dem Vermieter und" +
+                "auch einfache Kompaktduschen außerhalb des Badezimmers, z. B. im Schlafzimmer genügen den" +
+                "Mindestanforderungen nicht. Sanitäreinrichtungen in der Küche sind nicht zulässig.",
             },
           },
         },

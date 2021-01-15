@@ -18,7 +18,7 @@
     [(value)]="value.standortdaten"
     [schema]="schema.standortdaten"
     (errorChange)="error.standortdaten = $event"
-    standortdaten
+    [label]="schema.standortdaten.title"
   ></lib-json-schema-form>
 
   <button
