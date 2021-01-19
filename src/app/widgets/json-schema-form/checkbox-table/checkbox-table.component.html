@@ -1,1 +1,17 @@
-<p>checkbox-table works!</p>
+<table>
+  <tr>
+    <th *ngFor="let tableHead of schema.properties.tableHead">{{ tableHead }}</th>
+  </tr>
+  <tr *ngFor="let tableData of schema.properties.tableData; index as i">
+    <td>{{ (i + 1) + "." }}</td>
+    <td>{{ tableData }}</td>
+    <td>
+      <mat-checkbox (change)="valueChanges($event, i)"></mat-checkbox>
+    </td>
+    <td *ngIf="!!schema.properties.enableComment">
+        <mat-form-field>
+            <textarea  matInput></textarea>
+        </mat-form-field>
+    </td>
+  </tr>
+</table>

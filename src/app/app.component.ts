@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { JsonSchemaFormService } from "@dashjoin/json-schema-form";
 import { Schema } from "@dashjoin/json-schema-form/lib/schema";
+import { CheckboxTableComponent } from "./widgets/json-schema-form/checkbox-table/checkbox-table.component";
 import { MultilineCheckboxComponent } from "./widgets/json-schema-form/multiline-checkbox/multiline-checkbox.component";
 
 @Component({
@@ -10,27 +11,17 @@ import { MultilineCheckboxComponent } from "./widgets/json-schema-form/multiline
 })
 export class AppComponent implements OnInit {
   title = "test";
-
-  constructor(private service: JsonSchemaFormService) {}
-
-  ngOnInit() {
-    this.service.registerComponent(
-      "multiline-checkbox",
-      MultilineCheckboxComponent
-    );
-  }
+  showButtons = true;
 
   value: any = {
-    test: <String>null,
     standortdaten: <String>null,
     raeumlichkeiten: <String>null,
-    allgemeine_mindestkriterien: <String>null,
+    mindestkriterien: <String>null,
   };
   error: any = {
-    test: <any>null,
     standortdaten: <any>null,
     raeumlichkeiten: <any>null,
-    allgemeine_mindestkriterien: <any>null,
+    mindestkriterien: <any>null,
   };
   schema: any = {
     standortdaten: <Schema>{
@@ -240,42 +231,45 @@ export class AppComponent implements OnInit {
       properties: {
         allgemein: {
           type: "object",
+          widget: "custom",
+          widgetType: "checkbox-table",
           title: "Allgemeine Mindestkriterien",
           layout: "vertical",
           properties: {
-            "1.": {
-              type: "boolean",
-              widget: "custom",
-              widgetType: "multiline-checkbox",
-              title: "1.",
-              description:
-                "Das Objekt und das Grundstück sind in sauberem Zustand und werden regelmäßig gereinigt und gepflegt. Bei Verschmutzung und mangelnder Hygiene (Schimmel, " +
-                "Stockflecken, Ungeziefer, schlechter Geruch etc.) ist eine Klassifizierung nicht möglich",
-            },
-            "2.": {
-              type: "boolean",
-              widget: "custom",
-              widgetType: "multiline-checkbox",
-              title: "2.",
-              description:
-                "Das Objekt ist eine in sich abgeschlossene Einheit und verfügt über eine separate Eingangstür zur vermieteten Einheit.",
-            },
-            "3.": {
-              type: "boolean",
-              widget: "custom",
-              widgetType: "multiline-checkbox",
-              title: "3.",
-              description:
-                "Die Zugänge von Toilettenräumen sind mit einer schließbaren Tür ausgestattet (Vorhänge und Falttüren sind nicht zulässig)." +
+            tableHead: ["Nr.", "Beschreibung", "Erfüllt", "Bemerkung"],
+            tableData: [
+              "Das Objekt ist eine in sich abgeschlossene Einheit und verfügt über eine separate Eingangstür zur vermieteten Einheit.",
+              "Die Zugänge von Toilettenräumen sind mit einer schließbaren Tür ausgestattet (Vorhänge und Falttüren sind nicht zulässig)." +
                 "Eine Mitbenutzung der Sanitäreinrichtungen außerhalb des Objektes, z. B. mit dem Vermieter und" +
                 "auch einfache Kompaktduschen außerhalb des Badezimmers, z. B. im Schlafzimmer genügen den" +
                 "Mindestanforderungen nicht. Sanitäreinrichtungen in der Küche sind nicht zulässig.",
-            },
+              "Die Zugänge von Toilettenräumen sind mit einer schließbaren Tür ausgestattet" +
+                "(Vorhänge und Falttüren sind nicht zulässig)." +
+                "Eine Mitbenutzung der Sanitäreinrichtungen außerhalb des Objektes, z. B. mit dem Vermieter und" +
+                "auch einfache Kompaktduschen außerhalb des Badezimmers, z. B. im Schlafzimmer genügen den" +
+                "Mindestanforderungen nicht. Sanitäreinrichtungen in der Küche sind nicht zulässig.",
+              "Die angebotene Wohnfläche pro Person darf nicht weniger als 8 qm betragen.",
+              "Jeder Raum besitzt mindestens ein Außenfenster" +
+                "(Ausnahme: Küche, Sanitärbereich, Diele/Flur und Abstellkammer).",
+              "Eine für jeden Raum regulierbare Heizquelle ist vorhanden" +
+                "(Ausnahme: Diele/Flur und Abstellkammer, kein Kamin oder Ofen als ausschließliche Heizquelle).",
+            ],
+            enableComment: true,
           },
         },
       },
     },
   };
+
+  constructor(private service: JsonSchemaFormService) {}
+
+  ngOnInit() {
+    this.service.registerComponent(
+      "multiline-checkbox",
+      MultilineCheckboxComponent
+    );
+    this.service.registerComponent("checkbox-table", CheckboxTableComponent);
+  }
 
   printJSON(json: any) {
     console.log("Value: ", JSON.stringify(json, null, 2));

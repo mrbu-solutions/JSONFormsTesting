@@ -21,20 +21,22 @@
     [label]="schema.standortdaten.title"
   ></lib-json-schema-form>
 
-  <button
-    mat-raised-button
-    color="primary"
-    (click)="printJSON(value.standortdaten)"
-  >
-    Print Values
-  </button>
-  <button
-    mat-raised-button
-    color="warn"
-    (click)="printError(error.standortdaten)"
-  >
-    Print Errors
-  </button>
+  <div *ngIf="!!showButtons">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="printJSON(value.standortdaten)"
+    >
+      Print Values
+    </button>
+    <button
+      mat-raised-button
+      color="warn"
+      (click)="printError(error.standortdaten)"
+    >
+      Print Errors
+    </button>
+  </div>
 
   <br />
   <br />
@@ -46,23 +48,35 @@
     [label]="schema.raeumlichkeiten.title"
   ></lib-json-schema-form>
 
-  <button
-    mat-raised-button
-    color="primary"
-    (click)="printJSON(value.raeumlichkeiten)"
-  >
-    Print Values
-  </button>
-  <button
-    mat-raised-button
-    color="warn"
-    (click)="printError(error.raeumlichkeiten)"
-  >
-    Print Errors
-  </button>
+  <div *ngIf="!!showButtons">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="printJSON(value.raeumlichkeiten)"
+    >
+      Print Values
+    </button>
+    <button
+      mat-raised-button
+      color="warn"
+      (click)="printError(error.raeumlichkeiten)"
+    >
+      Print Errors
+    </button>
+  </div>
 
   <br />
   <br />
+
+  <span class="header2"> Allgemeine Mindestkriterien </span>
+  <br>
+  <br>
+  <span class="text"
+    >Nur wenn diese Voraussetzungen vollständig erfüllt sind, kann das Objekt
+    klassifiziert werden.</span
+  >
+  <br>
+  <br>
 
   <lib-json-schema-form
     [(value)]="value.mindestkriterien"
@@ -71,20 +85,22 @@
     [label]="schema.mindestkriterien.title"
   ></lib-json-schema-form>
 
-  <button
-    mat-raised-button
-    color="primary"
-    (click)="printJSON(value.mindestkriterien)"
-  >
-    Print Values
-  </button>
-  <button
-    mat-raised-button
-    color="warn"
-    (click)="printError(error.mindestkriterien)"
-  >
-    Print Errors
-  </button>
+  <div *ngIf="!!showButtons">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="printJSON(value.mindestkriterien)"
+    >
+      Print Values
+    </button>
+    <button
+      mat-raised-button
+      color="warn"
+      (click)="printError(error.mindestkriterien)"
+    >
+      Print Errors
+    </button>
+  </div>
 
   <br />
   <br />
