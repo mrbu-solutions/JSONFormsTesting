@@ -1,107 +1,66 @@
 <div id="content">
-  <span id="description"
-    >Klassifizierung von Ferienhäusern und -wohnungen nach den Kriterien des
-    Deutschen Tourismusverbandes - gültig ab dem 1. Januar 2019</span
-  >
-  <br />
-  <br />
-  <span id="attention-description"
-    >Wichtig! Bitte beachten Sie, dass bei der Durchführung der Klassifizierung
-    nur das bewertet werden kann, was im Objekt zum Zeitpunkt der Besichtigung
-    vorhanden ist. Bitte bereiten Sie sich für die Klassifizierung vor!
-  </span>
-
-  <br />
-  <br />
-
-  <lib-json-schema-form
-    [(value)]="value.standortdaten"
-    [schema]="schema.standortdaten"
-    (errorChange)="error.standortdaten = $event"
-    [label]="schema.standortdaten.title"
-  ></lib-json-schema-form>
-
-  <div *ngIf="!!showButtons">
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="printJSON(value.standortdaten)"
+    <span id="description"
+        >Klassifizierung von Ferienhäusern und -wohnungen nach den Kriterien des Deutschen Tourismusverbandes - gültig ab dem 1. Januar 2019</span
     >
-      Print Values
-    </button>
-    <button
-      mat-raised-button
-      color="warn"
-      (click)="printError(error.standortdaten)"
-    >
-      Print Errors
-    </button>
-  </div>
+    <br />
+    <br />
+    <span id="attention-description"
+        >Wichtig! Bitte beachten Sie, dass bei der Durchführung der Klassifizierung nur das bewertet werden kann, was im Objekt zum Zeitpunkt der Besichtigung
+        vorhanden ist. Bitte bereiten Sie sich für die Klassifizierung vor!
+    </span>
 
-  <br />
-  <br />
+    <br />
+    <br />
 
-  <lib-json-schema-form
-    [(value)]="value.raeumlichkeiten"
-    [schema]="schema.raeumlichkeiten"
-    (errorChange)="error.raeumlichkeiten = $event"
-    [label]="schema.raeumlichkeiten.title"
-  ></lib-json-schema-form>
+    <lib-json-schema-form
+        [(value)]="value.standortdaten"
+        [schema]="schema.standortdaten"
+        (errorChange)="error.standortdaten = $event"
+        [label]="schema.standortdaten.title"
+    ></lib-json-schema-form>
 
-  <div *ngIf="!!showButtons">
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="printJSON(value.raeumlichkeiten)"
-    >
-      Print Values
-    </button>
-    <button
-      mat-raised-button
-      color="warn"
-      (click)="printError(error.raeumlichkeiten)"
-    >
-      Print Errors
-    </button>
-  </div>
+    <div *ngIf="!!showButtons">
+        <button mat-raised-button color="primary" (click)="printJSON(value.standortdaten)">Print Values</button>
+        <button mat-raised-button color="warn" (click)="printError(error.standortdaten)">Print Errors</button>
+    </div>
 
-  <br />
-  <br />
+    <br />
+    <br />
 
-  <span class="header2"> Allgemeine Mindestkriterien </span>
-  <br>
-  <br>
-  <span class="text"
-    >Nur wenn diese Voraussetzungen vollständig erfüllt sind, kann das Objekt
-    klassifiziert werden.</span
-  >
-  <br>
-  <br>
+    <lib-json-schema-form
+        [(value)]="value.raeumlichkeiten"
+        [schema]="schema.raeumlichkeiten"
+        (errorChange)="error.raeumlichkeiten = $event"
+        [label]="schema.raeumlichkeiten.title"
+    ></lib-json-schema-form>
 
-  <lib-json-schema-form
-    [(value)]="value.mindestkriterien"
-    [schema]="schema.mindestkriterien"
-    (errorChange)="error.mindestkriterien = $event"
-    [label]="schema.mindestkriterien.title"
-  ></lib-json-schema-form>
+    <div *ngIf="!!showButtons">
+        <button mat-raised-button color="primary" (click)="printJSON(value.raeumlichkeiten)">Print Values</button>
+        <button mat-raised-button color="warn" (click)="printError(error.raeumlichkeiten)">Print Errors</button>
+    </div>
 
-  <div *ngIf="!!showButtons">
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="printJSON(value.mindestkriterien)"
-    >
-      Print Values
-    </button>
-    <button
-      mat-raised-button
-      color="warn"
-      (click)="printError(error.mindestkriterien)"
-    >
-      Print Errors
-    </button>
-  </div>
+    <br />
+    <br />
 
-  <br />
-  <br />
+    <span class="header2"> Allgemeine Mindestkriterien </span>
+    <br />
+    <br />
+    <span class="text">Nur wenn diese Voraussetzungen vollständig erfüllt sind, kann das Objekt klassifiziert werden.</span>
+    <br />
+    <br />
+
+    <lib-json-schema-form
+        [(value)]="value.mindestkriterien"
+        [schema]="schema.mindestkriterien"
+        (errorChange)="error.mindestkriterien = $event"
+        [label]="schema.mindestkriterien.title"
+    ></lib-json-schema-form>
+
+    <div *ngIf="!!showButtons">
+        <button mat-raised-button color="primary" (click)="printJSON(value.mindestkriterien)">Print Values</button>
+        <button mat-raised-button color="warn" (click)="printError(error.mindestkriterien)">Print Errors</button>
+    </div>
+
+    <br />
+    <br />
 </div>

@@ -1,17 +1,36 @@
 <table>
-  <tr>
-    <th *ngFor="let tableHead of schema.properties.tableHead">{{ tableHead }}</th>
-  </tr>
-  <tr *ngFor="let tableData of schema.properties.tableData; index as i">
-    <td>{{ (i + 1) + "." }}</td>
-    <td>{{ tableData }}</td>
-    <td>
-      <mat-checkbox (change)="valueChanges($event, i)"></mat-checkbox>
-    </td>
-    <td *ngIf="!!schema.properties.enableComment">
-        <mat-form-field>
-            <textarea  matInput></textarea>
-        </mat-form-field>
-    </td>
-  </tr>
+    <tr>
+        <th *ngFor="let headRow of processedSchema.headRows">{{ headRow }}</th>
+    </tr>
+    <tr *ngFor="let dataRow of processedSchema.dataRows; index as i">
+        <td>
+            <span>{{ dataRow.id }}</span>
+        </td>
+        <td>
+            <span>{{ dataRow.description }}</span>
+            <span>{{ dataRow.details }}</span>
+        </td>
+        <td *ngFor="let buttonCell of [].constructor(processedSchema.properties.buttonsCounter); index as i">
+            <ng-container *ngIf="dataRow.type === 'checkbox'">
+                <mat-checkbox
+                    color="primary"
+                    (change)="emitValues()"
+                    [(ngModel)]="value[dataRow.id][processedSchema.properties.columnHeadLabel_buttons[i]]"
+                ></mat-checkbox>
+            </ng-container>
+            <ng-container *ngIf="dataRow.type === 'radiobutton'">
+                <mat-radio-group [(ngModel)]="value[dataRow.childRowOf][processedSchema.properties.columnHeadLabel_buttons[i]]">
+                    <mat-radio-button color="primary" (change)="emitValues()" [name]="dataRow.childRowOf" [value]="dataRow.value"></mat-radio-button>
+                </mat-radio-group>
+            </ng-container>
+        </td>
+        <td *ngIf="!!processedSchema.properties.showValue">
+            <span>{{ dataRow.value }}</span>
+        </td>
+        <td>
+            <mat-form-field>
+                <textarea matInput (change)="textareaValueChanges($event, dataRow, i)"></textarea>
+            </mat-form-field>
+        </td>
+    </tr>
 </table>

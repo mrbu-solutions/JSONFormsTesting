@@ -1,26 +1,26 @@
 :host::ng-deep.mat-checkbox-layout {
-  white-space: normal !important;
+    white-space: normal !important;
 }
 
 :host::ng-deep.mat-checkbox-inner-container {
-  margin-top: 4px;
+    margin-top: 4px;
 }
 
 table,
 th,
 td {
-  border: 1px solid black;
+    border: 1px solid black;
 }
 
 table {
-  border-collapse: collapse;
+    border-collapse: collapse;
 }
 
 th,
 td {
-  padding: 10px;
+    padding: 10px;
 }
 
 th {
-  background-color: rgb(189, 189, 189);
+    background-color: rgb(189, 189, 189);
 }

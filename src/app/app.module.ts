@@ -11,10 +11,15 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MultilineCheckboxComponent } from "./widgets/json-schema-form/multiline-checkbox/multiline-checkbox.component";
-import { CheckboxTableComponent } from './widgets/json-schema-form/checkbox-table/checkbox-table.component';
+import { CheckboxTableComponent } from "./widgets/json-schema-form/checkbox-table/checkbox-table.component";
+import { MatRadioModule } from "@angular/material/radio";
 
 @NgModule({
-  declarations: [AppComponent, MultilineCheckboxComponent, CheckboxTableComponent],
+  declarations: [
+    AppComponent,
+    MultilineCheckboxComponent,
+    CheckboxTableComponent,
+  ],
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -24,6 +29,7 @@ import { CheckboxTableComponent } from './widgets/json-schema-form/checkbox-tabl
     MatButtonModule,
     MatCheckboxModule,
     MatInputModule,
+    MatRadioModule
   ],
   entryComponents: [MultilineCheckboxComponent, CheckboxTableComponent],
   providers: [],
